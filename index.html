@@ -463,3 +463,41 @@ function drawSalesChart() {
     chart.draw(data, options);
 }
 </script>
+<h3>Last Modified Time</h3>
+
+<p id="last-updated">
+    Loading last update time...
+</p>
+
+<button onclick="getLastUpdatedTime()">
+    Verify Last Modified Time
+</button>
+<script>
+async function getLastUpdatedTime() {
+    const username = "FEPSFY6984313";
+    const repo = "FY6984313";
+
+    const url = `https://api.github.com/repos/${username}/${repo}/commits`;
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Unable to fetch GitHub data");
+        }
+
+        const commits = await response.json();
+
+        const lastUpdated = commits[0].commit.committer.date;
+
+        document.getElementById("last-updated").textContent =
+            "Last Modified Time: " + new Date(lastUpdated).toLocaleString();
+
+    } catch (error) {
+        document.getElementById("last-updated").textContent =
+            "Error fetching update time. Please check your repository.";
+    }
+}
+
+window.onload = getLastUpdatedTime;
+</script>
