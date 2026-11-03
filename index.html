@@ -329,3 +329,137 @@ In: Proc. 17th Internat. Conf. on Machine Learning, Morgan Kaufmann, Stanford, C
     google.charts.setOnLoadCallback(drawScatterChart);
 
 </script>
+<h3>City Population Bar Chart</h3>
+
+<div id="bar_chart_div"
+     style="width: 900px; height: 500px;">
+</div>
+
+<script type="text/javascript">
+
+    // Load the chart package and callback
+    google.charts.setOnLoadCallback(drawBarChart);
+
+    function drawBarChart() {
+
+        // Create a DataTable
+        var data = new google.visualization.DataTable();
+
+        // Define columns
+        data.addColumn('string', 'City');
+        data.addColumn('number', 'Population');
+
+        // Add population data for 2023
+        data.addRows([
+            ['London', 9648000],
+            ['Birmingham', 1153900],
+            ['Edinburgh', 554000]
+        ]);
+
+        // Set chart options
+        var options = {
+            title: 'City Population Bar Chart',
+            hAxis: {
+                title: 'Population'
+            },
+            vAxis: {
+                title: 'City'
+            },
+            colors: ['#3366CC'],
+            legend: 'none'
+        };
+
+        // Create the bar chart
+        var chart = new google.visualization.BarChart(
+            document.getElementById('bar_chart_div')
+        );
+
+        // Display the chart
+        chart.draw(data, options);
+    }
+
+</script>
+<h3>City Population Trend</h3>
+
+<div id="line_chart_div"
+     style="width: 900px; height: 500px;">
+</div>
+
+<script type="text/javascript">
+
+    google.charts.setOnLoadCallback(drawLineChart);
+
+    function drawLineChart() {
+
+        // Create the population data
+        var data = google.visualization.arrayToDataTable([
+            ['Year', 'London', 'Birmingham', 'Edinburgh'],
+            ['2013', 8414000, 1092200, 495000],
+            ['2015', 8661000, 1113000, 507000],
+            ['2017', 8916000, 1137100, 519000],
+            ['2019', 9177000, 1141800, 531000],
+            ['2021', 9426000, 1142500, 543000],
+            ['2023', 9648000, 1153900, 554000]
+        ]);
+
+        // Set chart options
+        var options = {
+            title: 'Population Trend of UK Cities (2013–2023)',
+            hAxis: {
+                title: 'Year'
+            },
+            vAxis: {
+                title: 'Population'
+            },
+            curveType: 'none',
+            legend: {
+                position: 'bottom'
+            }
+        };
+
+        // Create the line chart
+        var chart = new google.visualization.LineChart(
+            document.getElementById('line_chart_div')
+        );
+
+        // Display the chart
+        chart.draw(data, options);
+    }
+
+</script>
+<h3>Monthly Sales in 2023</h3>
+<div id="sales_chart_div" style="width: 900px; height: 500px;"></div>
+<script>
+google.charts.setOnLoadCallback(drawSalesChart);
+
+function drawSalesChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Month', 'Sales (in GBP)', { role: 'style' }],
+        ['January', 25000, '#3366cc'],
+        ['February', 28000, '#dc3912'],
+        ['March', 30000, '#ff9900'],
+        ['April', 27000, '#109618'],
+        ['May', 31000, '#990099'],
+        ['June', 34000, '#0099c6'],
+        ['July', 36000, '#dd4477'],
+        ['August', 38000, '#66aa00'],
+        ['September', 33000, '#b82e2e'],
+        ['October', 29000, '#316395'],
+        ['November', 27000, '#994499'],
+        ['December', 32000, '#22aa99']
+    ]);
+
+    var options = {
+        title: 'Monthly Sales in 2023',
+        hAxis: { title: 'Month' },
+        vAxis: { title: 'Sales (in GBP)' },
+        legend: { position: 'none' }
+    };
+
+    var chart = new google.visualization.ColumnChart(
+        document.getElementById('sales_chart_div')
+    );
+
+    chart.draw(data, options);
+}
+</script>
