@@ -175,3 +175,22 @@ In: Geoscience and Remote Sensing Symposium, 2009 IEEE International, IGARSS 200
 Campbell, C, Cristianini, N and Smola, A (2000), Query learning with large margin classifiers.
 In: Proc. 17th Internat. Conf. on Machine Learning, Morgan Kaufmann, Stanford, CA,111-118.
 </p>
+
+<button id="colorButton">Click me to change colour</button>
+
+<script>
+    // Get a reference to the button element
+    var button = document.getElementById("colorButton");
+
+    // Function to change the button colour
+    function changeColor() {
+        // Generate a random hexadecimal colour
+        var randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+
+        // Set the button's background colour
+        button.style.backgroundColor = randomColor;
+    }
+
+    // Add a click event listener
+    button.addEventListener("click", changeColor);
+</script>
