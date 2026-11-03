@@ -194,3 +194,24 @@ In: Proc. 17th Internat. Conf. on Machine Learning, Morgan Kaufmann, Stanford, C
     // Add a click event listener
     button.addEventListener("click", changeColor);
 </script>
+
+<h3>JavaScript Input Test</h3>
+
+<input type="text" id="textInput" placeholder="Enter text">
+
+<button id="alertButton">Show alert</button>
+
+<script>
+    // Get references to the input field and button
+    var input = document.getElementById("textInput");
+    var alertButton = document.getElementById("alertButton");
+
+    // Function to show an alert
+    function showAlert() {
+        var inputText = input.value;
+        alert("You entered: " + inputText);
+    }
+
+    // Add click event listener
+    alertButton.addEventListener("click", showAlert);
+</script>
