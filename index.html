@@ -501,20 +501,31 @@ async function getLastUpdatedTime() {
 
 window.onload = getLastUpdatedTime;
 </script>
-<p id="totalWordCount">Calculating word count...</p>
 <script>
 function calculateWordCount() {
-    var introduction = document.getElementById("Introduction_InText").innerText;
-    var analysis = document.getElementById("Analysis_InText").innerText;
 
-    var combinedText = introduction + " " + analysis;
+    var sections = [
+        document.getElementById("Introduction_InText"),
+        document.getElementById("Analysis_InText")
+    ];
 
-    var words = combinedText.trim().split(/\s+/);
+    var totalWordCount = 0;
 
-    var wordCount = combinedText.trim() === "" ? 0 : words.length;
+    sections.forEach(function(section) {
+
+        if (section) {
+            var text = section.innerText.trim();
+
+            if (text.length > 0) {
+                var words = text.match(/\b[\w'-]+\b/g);
+                totalWordCount += words ? words.length : 0;
+            }
+        }
+
+    });
 
     document.getElementById("totalWordCount").innerText =
-        "Total Word Count: " + wordCount;
+        "Total Word Count: " + totalWordCount;
 }
 
 window.addEventListener("load", calculateWordCount);
