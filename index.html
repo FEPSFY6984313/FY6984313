@@ -281,3 +281,51 @@ In: Proc. 17th Internat. Conf. on Machine Learning, Morgan Kaufmann, Stanford, C
     }
 
 </script>
+<h3>Age vs Salary</h3>
+
+<div id="scatter_chart_div"
+     style="width: 900px; height: 500px;">
+</div>
+
+<script type="text/javascript">
+
+    // Function to draw the scatter chart
+    function drawScatterChart() {
+
+        // Create a new DataTable
+        var scatterData = new google.visualization.DataTable();
+
+        // Define the two columns
+        scatterData.addColumn('number', 'Age');
+        scatterData.addColumn('number', 'Salary');
+
+        // Add the data from the worksheet
+        scatterData.addRows([
+            [25, 40000],
+            [30, 50000],
+            [35, 60000],
+            [40, 75000],
+            [45, 80000],
+            [50, 90000]
+        ]);
+
+        // Set chart options
+        var scatterOptions = {
+            title: 'Age vs. Salary',
+            hAxis: { title: 'Age' },
+            vAxis: { title: 'Salary' }
+        };
+
+        // Create the scatter chart
+        var scatterChart = new google.visualization.ScatterChart(
+            document.getElementById('scatter_chart_div')
+        );
+
+        // Display the chart
+        scatterChart.draw(scatterData, scatterOptions);
+    }
+
+    // Run the function once Google Charts is loaded
+    google.charts.setOnLoadCallback(drawScatterChart);
+
+</script>
