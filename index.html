@@ -81,7 +81,7 @@ src="https://www.gstatic.com/charts/loader.js"></script>
 Supersonic passenger flight offers the possibility of significatly reducing international travel times. However, the retirement of concorde in 2003 hihgloghted the engineering, environmental and economic challenges associated with operating such aircraft. This article investigates whether advances in aircraft design and propulsion could make commercial supersonic passenger flight environmentally and economically viable. It examines aerodynamic performance, propulsion technology and sonic boom reduction, alongside fuel consumption, atmospheric emissions and operating costs. Modern research, including NASA's X-59 programme, demonstrates progress towards quieter supersonic flight. Nevertheless, significant environmental and financial barriers remain, making widespread commercial adoption uncertain.
 <hr>
 
-<h3>Introduction</h3>
+<h3 id="Introduction">1. Introduction</h3>
 
 <p id="Introduction_InText" class="ex1" style="white-space:normal; overflow-wrap:break-word;">
 Supersonic flight refers to travelling at speeds greater than the speed of sound, offering the potential to significantly reduce international travel times. However, following the retirement of Concorde in 2003, commerical supersonic passenger services came to an end. This was largely due to challenges involving high operating costs, excessive fuel consumption, environmental concerns and the disturbance caused by sonic booms. In recent years, advances in aerospace engineering have renewed interest in developing a new generation of supersonic passenger aircraft. Projects such as NASA's X-59 demonstrate efforts to address some of the technical and noise-related challenges. This article investigates whether advances in aircraft design and propulsion can make commercial supersonic passenger flight environmentally and economically viable.
@@ -146,22 +146,52 @@ In conclusion, advances in aircraft design and propulsion have created new oppor
 
 <h3 id="References">References</h3>
 
-<p>
-Angluin, D (1988), Queries and concept learning. Machine learning 2, (4), 319-342.
+<h3 id="References">References</h3>
 
-Brinker, K (2003), Incorporating Diversity in Active Learning with Support Vector Machines,
-Proceedings of the Twentieth International Conference on Machine Learning (ICML-2003).
+<ol>
+    <li>
+        European Union Aviation Safety Agency (EASA) (n.d.)
+        <i>Supersonic aircraft</i>.
+        Available at:
+        <a href="https://www.easa.europa.eu/en/domains/environment/eaer/technology-and-design/supersonic-aircraft">
+        https://www.easa.europa.eu/en/domains/environment/eaer/technology-and-design/supersonic-aircraft</a>
+        (Accessed: 6 November 2026).
+    </li>
 
-Bruzzone, L, Chi, M and Marconcini, M (2006), A novel transductive SVM for semisupervised classification of remote-sensing images,
-IEEE Transactions on Geoscience and Remote Sensing, 44, (11), 3363.
+    <li>
+        International Civil Aviation Organization, Committee on Aviation Environmental Protection, Impacts and Science Group (2025)
+        <i>Update on Understanding of Potential Impacts of Supersonic Aircraft</i>.
+        Available at:
+        <a href="https://www.icao.int/sites/default/files/environmental-protection/Documents/ScientificUnderstanding/CAEP14-ISG-Supersonics.pdf">
+        ICAO report (PDF)</a>.
+    </li>
 
-Bruzzone, L and Persello, C (2009), Active learning for classification of remote sensing images.
-In: Geoscience and Remote Sensing Symposium, 2009 IEEE International, IGARSS 2009, 3.
+    <li>
+        Klingenberg, C. and Belke, J.L. (2024)
+        'Profitability of supersonic travel',
+        <i>Journal of Air Transport Management</i>, 117, 102581.
+        Available at:
+        <a href="https://doi.org/10.1016/j.jairtraman.2024.102581">
+        https://doi.org/10.1016/j.jairtraman.2024.102581</a>.
+    </li>
 
-Campbell, C, Cristianini, N and Smola, A (2000), Query learning with large margin classifiers.
-In: Proc. 17th Internat. Conf. on Machine Learning, Morgan Kaufmann, Stanford, CA,111-118.
-</p>
+    <li>
+        NASA (n.d.) <i>Quesst: The Mission</i>.
+        Available at:
+        <a href="https://www.nasa.gov/quesst-the-mission/">
+        https://www.nasa.gov/quesst-the-mission/</a>
+        (Accessed: 6 November 2026).
+    </li>
 
+    <li>
+        Sun, Y. and Smith, H. (2017)
+        'Review and prospect of supersonic business jet design',
+        <i>Progress in Aerospace Sciences</i>, 90, pp. 12–38.
+        Available at:
+        <a href="https://doi.org/10.1016/j.paerosci.2016.12.003">
+        https://doi.org/10.1016/j.paerosci.2016.12.003</a>.
+    </li>
+</ol>
 <button id="colorButton">Click me to change colour</button>
 
 <script>
@@ -489,28 +519,58 @@ window.onload = getLastUpdatedTime;
 <script>
 function calculateWordCount() {
 
-    var sections = [
-        document.getElementById("Introduction_InText"),
-        document.getElementById("Analysis_InText")
+    var sectionIds = [
+        "Introduction",
+        "Engineering",
+        "Environment",
+        "Economics",
+        "Conclusion"
     ];
 
-    var totalWordCount = 0;
+    var stopIds = [
+        "Abstract",
+        "Introduction",
+        "Engineering",
+        "Environment",
+        "Economics",
+        "Conclusion",
+        "References"
+    ];
 
-    sections.forEach(function(section) {
+    var articleText = "";
 
-        if (section) {
-            var text = section.innerText.trim();
+    sectionIds.forEach(function(id) {
 
-            if (text.length > 0) {
-                var words = text.match(/\b[\w'-]+\b/g);
-                totalWordCount += words ? words.length : 0;
+        var heading = document.getElementById(id);
+
+        if (heading) {
+
+            var element = heading.nextElementSibling;
+
+            while (element) {
+
+                if (
+                    element.matches("h1, h2, h3, h4") &&
+                    stopIds.includes(element.id)
+                ) {
+                    break;
+                }
+
+                if (element.tagName === "P") {
+                    articleText += " " + element.innerText;
+                }
+
+                element = element.nextElementSibling;
             }
         }
-
     });
 
+    var words = articleText.match(/\b[\w'-]+\b/g);
+
+    var totalWordCount = words ? words.length : 0;
+
     document.getElementById("totalWordCount").innerText =
-        "Total Word Count: " + totalWordCount;
+        "Main Article Word Count: " + totalWordCount;
 }
 
 window.addEventListener("load", calculateWordCount);
